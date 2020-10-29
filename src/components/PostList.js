@@ -1,20 +1,23 @@
-// construct Tree
-// take in post arrya from erdux store and make tree everytime you render
-import posts from "../reducers/posts";
 import Post from "./Post";
 import { connect } from "react-redux";
 import React, { useState } from "react";
 
 const PostList = ({ posts }) => {
   console.log("Posts", posts);
-  const [postTree, setPostTree] = useState([]);
+  let postTree = constructTree(posts);
 
-  setPostTree(constructTree(posts));
+  return <RecursivePostList postTree={postTree} />;
+};
 
+const RecursivePostList = ({ postTree }) => {
   return (
     <div>
       {postTree.map((post) => (
-        <Post key={post.id} {...post} />
+        <div key={post.id}>
+          <Post post={post}>
+            <RecursivePostList postTree={post.children} />
+          </Post>
+        </div>
       ))}
     </div>
   );
@@ -28,9 +31,9 @@ const constructTree = (posts) => {
         id: post.id,
         name: post.name,
         postText: post.postText,
+        nest: post.nest,
         children: [],
       });
-      posts.remove(post);
     }
   });
   postTree.forEach((postNode) => {

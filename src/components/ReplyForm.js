@@ -1,14 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addPost } from "../actions/";
+import PostList from "./PostForm";
 
-const PostForm = ({ addPost }) => {
-  console.log("in POSTFORM");
+const ReplyForm = ({ parent, addPost }) => {
+  console.log("in REPLY_FORM");
+  console.log(parent);
   const [state, setState] = React.useState({
     name: "",
     postText: "",
-    parent: 0,
-    nest: 0,
+    parent: parent.id,
+    nest: parent.nest + 1,
   });
 
   const handleChange = (e) => {
@@ -25,14 +27,17 @@ const PostForm = ({ addPost }) => {
     setState({
       name: "",
       postText: "",
-      parent: 0,
-      nest: 0,
+      parent: parent.id,
+      nest: parent.nest + 1,
     });
+    return <PostList />;
   };
+
+  let placeHolderForReply = "Reply to @" + parent.name;
 
   return (
     <form
-      style={{ textAlign: "center", fontFamily: "Helvetica" }}
+      style={{ textAlign: "left", fontFamily: "Helvetica" }}
       onSubmit={handleSubmit}
     >
       <input
@@ -46,7 +51,7 @@ const PostForm = ({ addPost }) => {
       <input
         type="text"
         name="postText"
-        placeholder="Write a post"
+        placeholder={placeHolderForReply}
         value={state.postText}
         onChange={handleChange}
       />
@@ -61,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addPost(name, postText, parent, nest)),
 });
 
-export default connect(null, mapDispatchToProps)(PostForm);
+export default connect(null, mapDispatchToProps)(ReplyForm);
