@@ -54,7 +54,7 @@ const ReplyForm = ({ parent, addPost }) => {
         onChange={handleChange}
       />
       <br></br>
-      <input type="submit" value="Submit" />
+      <input type="submit" disabled={!state.postText || !state.name} value="Submit" />
     </form>
   )
 }
