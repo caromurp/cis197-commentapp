@@ -35604,20 +35604,26 @@ var Post = function Post(_ref) {
   console.log(post);
   return /*#__PURE__*/_react.default.createElement(Thread, null, /*#__PURE__*/_react.default.createElement(Single, null, /*#__PURE__*/_react.default.createElement("p", {
     style: {
+      padding: 10,
       fontFamily: "Helvetica",
       color: "blue"
     }
   }, post.name), /*#__PURE__*/_react.default.createElement("p", {
     style: {
+      padding: 10,
       fontFamily: "Helvetica"
     }
-  }, post.postText), /*#__PURE__*/_react.default.createElement("div", null, post.nest < 2 && (isClicked ? /*#__PURE__*/_react.default.createElement(_ReplyForm.default, {
+  }, post.postText), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      padding: 10
+    }
+  }, post.nest < 2 && (isClicked ? /*#__PURE__*/_react.default.createElement(_ReplyForm.default, {
     parent: post
   }) : /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleChange
   }, "Reply"))), /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      marginRight: "auto"
+      align: "right"
     }
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleUpVote
@@ -35860,7 +35866,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51430" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52021" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

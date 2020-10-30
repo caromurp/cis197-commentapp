@@ -31,9 +31,11 @@ const Post = ({ post, children }) => {
         }}
       > */}
       <Single>
-        <p style={{ fontFamily: "Helvetica", color: "blue" }}>{post.name}</p>
-        <p style={{ fontFamily: "Helvetica" }}>{post.postText}</p>
-        <div>
+        <p style={{ padding: 10, fontFamily: "Helvetica", color: "blue" }}>
+          {post.name}
+        </p>
+        <p style={{ padding: 10, fontFamily: "Helvetica" }}>{post.postText}</p>
+        <div style={{ padding: 10 }}>
           {post.nest < 2 &&
             (isClicked ? (
               <ReplyForm parent={post} />
@@ -41,7 +43,7 @@ const Post = ({ post, children }) => {
               <button onClick={handleChange}>Reply</button>
             ))}
         </div>
-        <div style={{ marginRight: "auto" }}>
+        <div style={{ align: "right" }}>
           <button onClick={handleUpVote}>Up-vote</button>
           <p style={{ fontFamily: "Helvetica" }}>{votes}</p>
           <button onClick={handleDownVote}>Down-vote</button>
