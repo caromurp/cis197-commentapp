@@ -1,43 +1,41 @@
-import React from "react";
-import { connect } from "react-redux";
-import { addPost } from "../actions/";
-import PostList from "./PostForm";
+import React from 'react'
+import { connect } from 'react-redux'
+import { addPost } from '../actions'
+import PostList from './PostForm'
 
 const ReplyForm = ({ parent, addPost }) => {
-  console.log("in REPLY_FORM");
-  console.log(parent);
   const [state, setState] = React.useState({
-    name: "",
-    postText: "",
+    name: '',
+    postText: '',
     parent: parent.id,
     nest: parent.nest + 1,
-  });
+  })
 
   const handleChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value
     setState({
       ...state,
       [e.target.name]: value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    addPost(state.name, state.postText, state.parent, state.nest);
+    e.preventDefault()
+    addPost(state.name, state.postText, state.parent, state.nest)
     setState({
-      name: "",
-      postText: "",
+      name: '',
+      postText: '',
       parent: parent.id,
       nest: parent.nest + 1,
-    });
-    return <PostList />;
-  };
+    })
+    return <PostList />
+  }
 
-  let placeHolderForReply = "Reply to @" + parent.name;
+  const placeHolderForReply = `Reply to @ ${parent.name}`
 
   return (
     <form
-      style={{ textAlign: "left", fontFamily: "Helvetica" }}
+      style={{ textAlign: 'left', fontFamily: 'Helvetica' }}
       onSubmit={handleSubmit}
     >
       <input
@@ -58,12 +56,11 @@ const ReplyForm = ({ parent, addPost }) => {
       <br></br>
       <input type="submit" value="Submit" />
     </form>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = (dispatch) => ({
-  addPost: (name, postText, parent, nest) =>
-    dispatch(addPost(name, postText, parent, nest)),
-});
+const mapDispatchToProps = dispatch => ({
+  addPost: (name, postText, parent, nest) => dispatch(addPost(name, postText, parent, nest)),
+})
 
-export default connect(null, mapDispatchToProps)(ReplyForm);
+export default connect(null, mapDispatchToProps)(ReplyForm)

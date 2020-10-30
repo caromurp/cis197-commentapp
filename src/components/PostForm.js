@@ -1,38 +1,38 @@
-import React from "react";
-import { connect } from "react-redux";
-import { addPost } from "../actions/";
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react'
+import { connect } from 'react-redux'
+import { addPost } from '../actions'
 
 const PostForm = ({ addPost }) => {
-  console.log("in POSTFORM");
   const [state, setState] = React.useState({
-    name: "",
-    postText: "",
+    name: '',
+    postText: '',
     parent: 0,
     nest: 0,
-  });
+  })
 
-  const handleChange = (e) => {
-    const value = e.target.value;
+  const handleChange = e => {
+    const { value } = e.target
     setState({
       ...state,
       [e.target.name]: value,
-    });
-  };
+    })
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addPost(state.name, state.postText, state.parent, state.nest);
+  const handleSubmit = e => {
+    e.preventDefault()
+    addPost(state.name, state.postText, state.parent, state.nest)
     setState({
-      name: "",
-      postText: "",
+      name: '',
+      postText: '',
       parent: 0,
       nest: 0,
-    });
-  };
+    })
+  }
 
   return (
     <form
-      style={{ textAlign: "center", fontFamily: "Helvetica" }}
+      style={{ textAlign: 'center', fontFamily: 'Helvetica' }}
       onSubmit={handleSubmit}
     >
       <input
@@ -53,12 +53,11 @@ const PostForm = ({ addPost }) => {
       <br></br>
       <input type="submit" value="Submit" />
     </form>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = (dispatch) => ({
-  addPost: (name, postText, parent, nest) =>
-    dispatch(addPost(name, postText, parent, nest)),
-});
+const mapDispatchToProps = dispatch => ({
+  addPost: (name, postText, parent, nest) => dispatch(addPost(name, postText, parent, nest)),
+})
 
-export default connect(null, mapDispatchToProps)(PostForm);
+export default connect(null, mapDispatchToProps)(PostForm)

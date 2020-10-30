@@ -1,71 +1,62 @@
-import React, { useState } from "react";
-import ReplyForm from "./ReplyForm";
-import s from "styled-components";
+/* eslint-disable react/jsx-filename-extension */
+import React, { useState } from 'react'
+import s from 'styled-components'
+import ReplyForm from './ReplyForm'
 
 const Post = ({ post, children }) => {
-  const [votes, setVotes] = useState(0);
-  const [isClicked, setIsClicked] = useState(false);
+  const [votes, setVotes] = useState(0)
+  const [isClicked, setIsClicked] = useState(false)
 
   const handleChange = () => {
-    console.log("isClicked!!!");
-    setIsClicked(true);
-  };
+    setIsClicked(true)
+  }
 
   const handleUpVote = () => {
-    setVotes(votes + 1);
-  };
+    setVotes(votes + 1)
+  }
 
   const handleDownVote = () => {
-    setVotes(votes - 1);
-  };
-
-  console.log(post);
+    setVotes(votes - 1)
+  }
 
   return (
-    <Thread>
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          flexDirection: "row",
-        }}
-      > */}
-      <Single>
-        <p style={{ padding: 10, fontFamily: "Helvetica", color: "blue" }}>
+    <thread>
+      <single>
+        <p style={{ padding: 10, fontFamily: 'Helvetica', color: 'blue' }}>
           {post.name}
         </p>
-        <p style={{ padding: 10, fontFamily: "Helvetica" }}>{post.postText}</p>
+        <p style={{ padding: 10, fontFamily: 'Helvetica' }}>{post.postText}</p>
         <div style={{ padding: 10 }}>
-          {post.nest < 2 &&
-            (isClicked ? (
+          {post.nest < 2
+            && (isClicked ? (
               <ReplyForm parent={post} />
             ) : (
               <button onClick={handleChange}>Reply</button>
             ))}
         </div>
-        <div style={{ align: "right" }}>
+        <div style={{ align: 'right' }}>
           <button onClick={handleUpVote}>Up-vote</button>
-          <p style={{ fontFamily: "Helvetica" }}>{votes}</p>
+          <p style={{ fontFamily: 'Helvetica' }}>{votes}</p>
           <button onClick={handleDownVote}>Down-vote</button>
         </div>
-      </Single>
+      </single>
       {children}
-    </Thread>
-  );
-};
+    </thread>
+  )
+}
 
-const Thread = s.div`
+const thread = s.div`
   border: 1px solid red;
   padding: 20;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-`;
+`
 
-const Single = s.div`
+const single = s.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-`;
+`
 
-export default Post;
+export default Post
