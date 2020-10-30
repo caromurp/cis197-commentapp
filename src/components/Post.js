@@ -20,14 +20,14 @@ const Post = ({ post, children }) => {
   }
 
   return (
-    <thread>
-      <single>
+    <Thread>
+      <Single>
         <p style={{ padding: 10, fontFamily: 'Helvetica', color: 'blue' }}>
           {post.name}
         </p>
         <p style={{ padding: 10, fontFamily: 'Helvetica' }}>{post.postText}</p>
         <div style={{ padding: 10 }}>
-          {post.nest < 2
+          {post.nest < 2 
             && (isClicked ? (
               <ReplyForm parent={post} />
             ) : (
@@ -39,13 +39,13 @@ const Post = ({ post, children }) => {
           <p style={{ fontFamily: 'Helvetica' }}>{votes}</p>
           <button onClick={handleDownVote}>Down-vote</button>
         </div>
-      </single>
+      </Single>
       {children}
-    </thread>
+    </Thread>
   )
 }
 
-const thread = s.div`
+const Thread = s.div`
   border: 1px solid red;
   padding: 20;
   display: flex;
@@ -53,7 +53,7 @@ const thread = s.div`
   flex-direction: column;
 `
 
-const single = s.div`
+const Single = s.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
